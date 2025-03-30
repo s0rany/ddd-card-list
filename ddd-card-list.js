@@ -20,7 +20,8 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
-    this.dddPrimary = ""
+    this.dataPrimary="10";
+    this.dataAccent="2";
     this.title = "";
     this.t = this.t || {};
     this.t = {
@@ -41,7 +42,9 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
     return {
       ...super.properties,
       title: { type: String },
-      dddPrimary: { type: String },
+      dataPrimary: { type: Number },
+      dataAccent: { type: Number },
+
     };
   }
 
@@ -65,19 +68,18 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
     `];
   }
 
-  // Lit render the HTML
+  // Lit render the HTML     <h3><span>${this.t.title}:</span> ${this.title}</h3>
   render() {
     return html`
-<div class="wrapper">
-  <h3><span>${this.t.title}:</span> ${this.title}</h3>
-  <slot></slot>
-</div>`;
+    <div class="wrapper">
+      <slot></slot>
+    </div>`;
   }
 
   updated() {
 
     this.querySelectorAll('ddd-card').forEach(card => {
-      card.setAttribute('ddd-primary', this.dddPrimary);
+      card.setAttribute('dataPrimary', this.dataPrimary);
     });
   }
 

@@ -19,18 +19,15 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
 
     constructor() {
         super();
+        this.label="";
+        this.link="";
         this.image="";
-        this.dddPrimary="";
+        this.dataPrimary="";
         this.title="";
-        this.t = this.t || {};
-        this.t = {
-          ...this.t,
-          title: "Title",
-        };
         this.registerLocalization({
           context: this,
           localesPath:
-            new URL("./locales/ddd-card-list.ar.json", import.meta.url).href +
+            new URL("./locales/ddd-card.ar.json", import.meta.url).href +
             "/../",
           locales: ["ar", "es", "hi", "zh"],
         });
@@ -40,8 +37,11 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
         return {
           ...super.properties,
           title: { type: String },
-          dddPrimary: { type: String },
+          dataPrimary: { type: String },
           image: { type: String },
+          label: { type: String },
+          link: { type: String },
+
         };
     }
 
@@ -55,31 +55,45 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
             font-family: var(--ddd-font-navigation);
           }
           .wrapper {
+            background-color: var(--ddd-theme-default-beaverBlue);
+            width: 410px;
+          }
+          .text {
             margin: var(--ddd-spacing-2);
             padding: var(--ddd-spacing-4);
           }
           h3 span {
             font-size: var(--ddd-card-list-label-font-size, var(--ddd-font-size-s));
           }
+          .wrapper img{
+            width: 100%;
+            height: auto;
+            display: block;
+          }
+          
         `];
     }
     render() {
       return html`
-  <div class="wrapper">
-    <div class="img">${this.image}</div>
+        <div class="wrapper">
+          <img src="${this.image}" alt="${this.title}" />
+          <div class="text">
+          <h3>${this.title}</h3>
+          <slot></slot>
+           </div>
+        </div>`;
+    }
     
-    <h3><span>${this.t.title}:</span> ${this.title}</h3>
-    <slot></slot>
-  </div>`;
+    updated(changedProperties) {
+      if (changedProperties.has("dddPrimary")) {
+        this.style.setProperty("--ddd-theme-primary", `var(--ddd-primary-${this.dddPrimary})`);
+      }
     }
     
     static get haxProperties() {
       return new URL(`./lib/${this.tag}.haxProperties.json`, import.meta.url)
         .href;
     }
-
-
-
 
 }
 globalThis.customElements.define(DddCard.tag, DddCard);

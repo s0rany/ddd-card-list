@@ -20,6 +20,7 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
+    this.dddPrimary = ""
     this.title = "";
     this.t = this.t || {};
     this.t = {
@@ -40,6 +41,7 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
     return {
       ...super.properties,
       title: { type: String },
+      dddPrimary: { type: String },
     };
   }
 
@@ -70,6 +72,13 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
   <h3><span>${this.t.title}:</span> ${this.title}</h3>
   <slot></slot>
 </div>`;
+  }
+
+  updated() {
+
+    this.querySelectorAll('ddd-card').forEach(card => {
+      card.setAttribute('ddd-primary', this.dddPrimary);
+    });
   }
 
   /**

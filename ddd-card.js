@@ -47,11 +47,12 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
             font-family: var(--ddd-font-navigation);
           }
           .wrapper {
-            border-radius: 8px;
+            border-radius: var(--ddd-radius-sm);
             margin: 25px 30px;
             background-color: var(--ddd-theme-default-slate);
             width: 410px;
-            box-shadow: 5px 5px 5px 5px lightgrey;
+            box-shadow: var(--ddd-boxShadow-md);
+            box-shadow: grey
           }
           .text {
             margin: var(--ddd-spacing-2);
@@ -63,16 +64,16 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
             font-size: var(--ddd-card-list-label-font-size, var(--ddd-font-size-s));
           }
           .wrapper img{
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
+            border-top-left-radius: var(--ddd-radius-sm);
+            border-top-right-radius: var(--ddd-radius-sm);
             width: 100%;
             height: auto;
             vertical-align: bottom;
           }
           .bar{
-            border-top-width: 12px;
-            border-bottom-width: 0px;
-            border-color: var(--theme-ui-colors-nittanyNavy);
+            border-top-width: var(--ddd-border-size-lg);
+            border-bottom-width: var(--ddd-border-size-xs);
+            background-color: var(--theme-ui-colors-nittanyNavy);
             border-style: solid;
           }
           .info{
@@ -82,14 +83,14 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
           .btn{
             margin-top: auto;             
             color: var(--theme-ui-colors-link);
-            font-family: Roboto, Arial, Tahoma, sans-serif;
+            font-family: var(--ddd-font-primary);
             cursor: pointer;
             width: -webkit-fit-content;
           }
           .btn:hover{
             color: var(--theme-ui-colors-white);
             background-color: var(--theme-ui-colors-nittanyNavy);
-            border: 2px solid #001E44;
+            border: var(--ddd-border-sm) solid #001E44;
           }
       
           

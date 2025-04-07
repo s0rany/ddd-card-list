@@ -48,6 +48,7 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
           }
           .wrapper {
             border-radius: 8px;
+            margin: 25px 30px;
             background-color: var(--ddd-theme-default-slate);
             width: 410px;
             box-shadow: 5px 5px 5px 5px lightgrey;
@@ -66,12 +67,13 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
             border-top-right-radius: 8px;
             width: 100%;
             height: auto;
+            vertical-align: bottom;
           }
           .bar{
-            bottom: var(--ddd-spacing-0);
-            width: 100%;
-            height: 16px;
-            background-color: var(--ddd-primary-2);
+            border-top-width: 12px;
+            border-bottom-width: 0px;
+            border-color: var(--theme-ui-colors-nittanyNavy);
+            border-style: solid;
           }
           .info{
             flex-grow: 1; 
@@ -89,18 +91,7 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
             background-color: var(--theme-ui-colors-nittanyNavy);
             border: 2px solid #001E44;
           }
-          @media screen and (min-width: 1080px) {
-            .wrapper {
-                margin-top: 3.75rem;
-                margin-bottom: 3.75rem;
-              }
-          }
-          @media screen and (min-width: 768px) {
-              .wrapper {
-                  margin-top: 3.75rem;
-                  margin-bottom: 3.75rem;
-              }
-          }
+      
           
         `];
     }
@@ -136,6 +127,9 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
       return new URL(`./lib/${this.tag}.haxProperties.json`, import.meta.url)
         .href;
     }
-
+//bottom: var(--ddd-spacing-0);
+//width: 100%;
+//height: 16px;
+//background-color: var(--ddd-primary-2);
 }
 globalThis.customElements.define(DddCard.tag, DddCard);

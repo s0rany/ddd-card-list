@@ -42,8 +42,8 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
     return {
       ...super.properties,
       title: { type: String },
-      dataPrimary: { type: Number },
-      dataAccent: { type: Number },
+      dataPrimary: { type: String },
+      dataAccent: { type: String },
 
     };
   }
@@ -68,7 +68,7 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
     `];
   }
 
-  // Lit render the HTML     <h3><span>${this.t.title}:</span> ${this.title}</h3>
+  // Lit render the HTML <h3><span>${this.t.title}:</span> ${this.title}</h3>
   render() {
     return html`
     <div class="wrapper">
@@ -77,9 +77,9 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
   }
 
   updated() {
-
     this.querySelectorAll('ddd-card').forEach(card => {
       card.setAttribute('dataPrimary', this.dataPrimary);
+      card.setAttribute('dataAccent', this.dataAccent);
     });
   }
 

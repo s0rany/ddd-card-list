@@ -14,7 +14,7 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
         this.label="";
         this.link="";
         this.image="";
-        this.dataPrimary="";
+        this.dataPrimary="2";
         this.title="";
         this.registerLocalization({
           context: this,
@@ -30,10 +30,10 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
           ...super.properties,
           title: { type: String },
           dataPrimary: { type: String },
+          dataAccent: { type: String },
           image: { type: String },
           label: { type: String },
           link: { type: String },
-
         };
     }
 
@@ -41,18 +41,20 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
         return [super.styles,
         css`
           :host {
-            display: block;
+            display: inline-block;
             color: var(--ddd-theme-primary);
             background-color: var(--ddd-theme-accent);
             font-family: var(--ddd-font-navigation);
           }
           .wrapper {
-            background-color: var(--ddd-theme-default-beaverBlue);
+            background-color: var(--ddd-theme-default-shrineLight);
             width: 410px;
           }
           .text {
             margin: var(--ddd-spacing-2);
             padding: var(--ddd-spacing-4);
+            height: 200px;
+            overflow: auto;
           }
           h3 span {
             font-size: var(--ddd-card-list-label-font-size, var(--ddd-font-size-s));
@@ -62,23 +64,56 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
             height: auto;
             display: block;
           }
+          .bar{
+            bottom: var(--ddd-spacing-0);
+            width: 100%;
+            height: 16px;
+            background-color: var(--ddd-primary-2);
+          }
+          .info{
+            flex-grow: 1; 
+            overflow: auto;
+          }
+          .btn{
+            margin-top: auto;             
+            color: var(--theme-ui-colors-link);
+            font-family: Roboto, Arial, Tahoma, sans-serif;
+            cursor: pointer;
+            width: -webkit-fit-content;
+          }
+          .btn:hover{
+            color: var(--theme-ui-colors-white);
+            background-color: var(--theme-ui-colors-nittanyNavy);
+            border: 2px solid #001E44;
+          }
           
         `];
     }
     render() {
       return html`
         <div class="wrapper">
-          <img src="${this.image}" alt="${this.title}" />
+          <img src="${this.image}" alt="${this.title}"/>
+          <div class="bar"></div> 
           <div class="text">
-          <h3>${this.title}</h3>
-          <slot></slot>
-           </div>
-        </div>`;
+            <h3>${this.title}</h3>
+            <div class="info">
+              <slot>
+              </slot>
+            </div>
+            <a  class="btn" href="${this.link}">
+              Explore
+            </a>
+          </div>
+        </div> 
+        `;
     }
     
     updated(changedProperties) {
-      if (changedProperties.has("dddPrimary")) {
-        this.style.setProperty("--ddd-theme-primary", `var(--ddd-primary-${this.dddPrimary})`);
+      if (changedProperties.has("dataPrimary")) {
+        this.style.setProperty("--ddd-theme-primary", `var(--ddd-primary-${this.dataPrimary})`);
+      }
+      if (changedProperties.has("dataAccent")) {
+        this.style.setProperty("--ddd-theme-accent", `var(--ddd-accent-${this.dataAccent})`);
       }
     }
     

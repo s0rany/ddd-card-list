@@ -55,8 +55,7 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
             box-shadow: darkgrey;
           }
           .text {
-            margin: var(--ddd-spacing-2);
-            padding: var(--ddd-spacing-2);
+            padding: 10px 10px;
             height: 200px;
             overflow: auto;
           }
@@ -83,14 +82,16 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
           .btn{
             margin-top: auto;             
             color: var(--theme-ui-colors-link);
+            background-color: var(--theme-ui-colors-white);
             font-family: var(--ddd-font-primary);
             cursor: pointer;
             width: -webkit-fit-content;
           }
           .btn:hover{
-            color: var(--theme-ui-colors-white);
-            background-color: var(--theme-ui-colors-nittanyNavy);
-            border: var(--ddd-border-sm) solid #001E44;
+            color: var(--theme-ui-colors-nittanyNavy);
+            background-color: var(--theme-ui-colors-white);
+            border: var(--ddd-border-sm);
+            border: var(--theme-ui-colors-nittanyNavy);
           }
       
           

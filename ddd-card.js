@@ -52,7 +52,7 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
             background-color: var(--ddd-theme-default-slate);
             width: 410px;
             box-shadow: var(--ddd-boxShadow-md);
-            box-shadow: grey
+            box-shadow: darkgrey;
           }
           .text {
             margin: var(--ddd-spacing-2);

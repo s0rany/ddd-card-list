@@ -47,12 +47,14 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
             font-family: var(--ddd-font-navigation);
           }
           .wrapper {
-            background-color: var(--ddd-theme-default-shrineLight);
+            border-radius: 8px;
+            background-color: var(--ddd-theme-default-slate);
             width: 410px;
+            box-shadow: 5px 5px 5px 5px lightgrey;
           }
           .text {
             margin: var(--ddd-spacing-2);
-            padding: var(--ddd-spacing-4);
+            padding: var(--ddd-spacing-2);
             height: 200px;
             overflow: auto;
           }
@@ -60,9 +62,10 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
             font-size: var(--ddd-card-list-label-font-size, var(--ddd-font-size-s));
           }
           .wrapper img{
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
             width: 100%;
             height: auto;
-            display: block;
           }
           .bar{
             bottom: var(--ddd-spacing-0);
@@ -85,6 +88,18 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
             color: var(--theme-ui-colors-white);
             background-color: var(--theme-ui-colors-nittanyNavy);
             border: 2px solid #001E44;
+          }
+          @media screen and (min-width: 1080px) {
+            .wrapper {
+                margin-top: 3.75rem;
+                margin-bottom: 3.75rem;
+              }
+          }
+          @media screen and (min-width: 768px) {
+              .wrapper {
+                  margin-top: 3.75rem;
+                  margin-bottom: 3.75rem;
+              }
           }
           
         `];

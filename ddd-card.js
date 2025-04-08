@@ -48,20 +48,27 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
           }
           .wrapper {
             border-radius: var(--ddd-radius-sm);
-            margin: 25px 30px;
+            //margin: 25px 30px;
+            margin: var(--ddd-spacing-2);
             background-color: var(--ddd-theme-default-slate);
             width: 410px;
-            box-shadow: var(--ddd-boxShadow-md);
-            box-shadow: darkgrey;
+            box-shadow: var(--ddd-boxShadow-lg);
+            box-shadow: dimgray;
           }
           .text {
-            padding: 10px 10px;
+            //margin-left: var(--ddd-spacing-4);
+            //padding-right: var(--ddd-spacing-4);
+
             height: 200px;
-            overflow: auto;
           }
-          h3 span {
+          .title{
             font-size: var(--ddd-card-list-label-font-size, var(--ddd-font-size-s));
+            margin: var(--ddd-spacing-4);
+
           }
+          //h3 span {
+          //  font-size: var(--ddd-card-list-label-font-size, var(--ddd-font-size-s));
+          //}
           .wrapper img{
             border-top-left-radius: var(--ddd-radius-sm);
             border-top-right-radius: var(--ddd-radius-sm);
@@ -70,30 +77,39 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
             vertical-align: bottom;
           }
           .bar{
-            border-top-width: var(--ddd-border-size-lg);
-            border-bottom-width: var(--ddd-border-size-xs);
-            background-color: var(--theme-ui-colors-nittanyNavy);
+            border-top-width: 12px;
+            border-bottom-width: 0px;
+            border-color: var(--theme-ui-colors-nittanyNavy);
             border-style: solid;
           }
           .info{
-            flex-grow: 1; 
+            margin-left: var(--ddd-spacing-4);
+            margin-right: var(--ddd-spacing-4);
             overflow: auto;
+            //flex-grow: 1; 
           }
           .btn{
-            margin-top: auto;             
-            color: var(--theme-ui-colors-link);
-            background-color: var(--theme-ui-colors-white);
-            font-family: var(--ddd-font-primary);
-            cursor: pointer;
-            width: -webkit-fit-content;
+            width: 100%;
+            background-color: #004684;
+            color: var(--ddd-theme-default-white);
+            border: none;
+            padding: var(--ddd-spacing-3);
+            //padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;       
+            margin-bottom: 15px;
+            margin-right: var(--ddd-spacing-5);
+
+            //margin-left: var(--ddd-spacing-4);
+            //margin-right: var(--ddd-spacing-4);
           }
           .btn:hover{
-            color: var(--theme-ui-colors-nittanyNavy);
-            background-color: var(--theme-ui-colors-white);
-            border: var(--ddd-border-sm);
-            border: var(--theme-ui-colors-nittanyNavy);
+            color: var(--ddd-theme-default-white);
+            background-color: var(--ddd-theme-default-nittanyNavy);
+            //border: 2px solid #001E44;
           }
-      
+         
           
         `];
     }
@@ -101,17 +117,17 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
       return html`
         <div class="wrapper">
           <img src="${this.image}" alt="${this.title}"/>
-          <div class="bar"></div> 
+          <div class="bar" dataAccent="${this.dataAccent}"></div> 
           <div class="text">
-            <h3>${this.title}</h3>
+            <h3 class="title">${this.title}</h3>
             <div class="info">
               <slot>
               </slot>
             </div>
-            <a  class="btn" href="${this.link}">
-              Explore
-            </a>
           </div>
+          <button  class="btn" href="${this.link}">
+            Explore
+          </button>
         </div> 
         `;
     }

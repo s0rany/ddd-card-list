@@ -20,7 +20,7 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
-    this.dataPrimary="10";
+    this.dataPrimary="2";
     this.dataAccent="2";
     this.title = "";
     this.t = this.t || {};

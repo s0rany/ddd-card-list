@@ -48,27 +48,22 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
           }
           .wrapper {
             border-radius: var(--ddd-radius-sm);
-            //margin: 25px 30px;
-            margin: var(--ddd-spacing-2);
+            margin: var(--ddd-spacing-4);
             background-color: var(--ddd-theme-default-slate);
             width: 410px;
-            box-shadow: var(--ddd-boxShadow-lg);
+            box-shadow: var(--ddd-boxShadow-sm);
             box-shadow: dimgray;
           }
           .text {
-            //margin-left: var(--ddd-spacing-4);
-            //padding-right: var(--ddd-spacing-4);
-
-            height: 200px;
+            height: 185px;
           }
           .title{
             font-size: var(--ddd-card-list-label-font-size, var(--ddd-font-size-s));
-            margin: var(--ddd-spacing-4);
-
+            margin-top: var(--ddd-spacing-4);
+            margin-bottom: var(--ddd-spacing-0);
+            margin-right: var(--ddd-spacing-4);
+            margin-left: var(--ddd-spacing-4);
           }
-          //h3 span {
-          //  font-size: var(--ddd-card-list-label-font-size, var(--ddd-font-size-s));
-          //}
           .wrapper img{
             border-top-left-radius: var(--ddd-radius-sm);
             border-top-right-radius: var(--ddd-radius-sm);
@@ -83,31 +78,37 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
             border-style: solid;
           }
           .info{
+            color: var(--ddd-theme-default-coalyGray);
+            font-size: 18px;
+            font-family: var(--ddd-font-primary);
+            line-height: 27px;
+            margin-top: var(--ddd-spacing--1);
             margin-left: var(--ddd-spacing-4);
             margin-right: var(--ddd-spacing-4);
             overflow: auto;
-            //flex-grow: 1; 
           }
           .btn{
-            width: 100%;
-            background-color: #004684;
+            width: 90%;
+            background-color: var(--ddd-theme-default-link);
             color: var(--ddd-theme-default-white);
             border: none;
             padding: var(--ddd-spacing-3);
-            //padding: 12px 20px;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: var(--ddd-font-weight-medium);
+            font-family: var(--ddd-font-primary);
             border-radius: 5px;       
-            margin-bottom: 15px;
+            margin-bottom: var(--ddd-spacing-5);
             margin-right: var(--ddd-spacing-5);
+            margin-left: var(--ddd-spacing-5);
 
-            //margin-left: var(--ddd-spacing-4);
-            //margin-right: var(--ddd-spacing-4);
+            
           }
           .btn:hover{
             color: var(--ddd-theme-default-white);
             background-color: var(--ddd-theme-default-nittanyNavy);
-            //border: 2px solid #001E44;
+          }
+          .slot{
+            margin: var(--ddd-spacing-0);
           }
          
           
@@ -125,8 +126,8 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
               </slot>
             </div>
           </div>
-          <button  class="btn" href="${this.link}">
-            Explore
+          <button  class="btn" @click=${this._handleClick}>
+            Explore >
           </button>
         </div> 
         `;
@@ -138,6 +139,12 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
       }
       if (changedProperties.has("dataAccent")) {
         this.style.setProperty("--ddd-theme-accent", `var(--ddd-accent-${this.dataAccent})`);
+      }
+    }
+
+    _handleClick() {
+      if (this.link) {
+        window.open(this.link, "_blank");
       }
     }
     

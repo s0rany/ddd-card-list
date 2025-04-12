@@ -4,6 +4,7 @@
  */
 import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
+
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
 /**
@@ -21,7 +22,7 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
   constructor() {
     super();
     this.dataPrimary="2";
-    this.dataAccent="2";
+    this.dataAccent="";
     this.title = "";
     this.t = this.t || {};
     this.t = {
@@ -54,21 +55,36 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
     css`
       :host {
         display: block;
-        color: var(--ddd-theme-primary);
         background-color: var(--ddd-theme-accent);
         font-family: var(--ddd-font-navigation);
       }
       .wrapper {
-        margin: var(--ddd-spacing-2);
+        margin: auto;
+        width: 90%;
+        display: grid;
+        flex-direction: row;
+        flex-wrap: wrap;
         padding: var(--ddd-spacing-4);
+        grid-template-columns: repeat(3, 1fr);
+
       }
       h3 span {
         font-size: var(--ddd-card-list-label-font-size, var(--ddd-font-size-s));
       }
+      @media (max-width: 1034px) {
+        .wrapper {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 767px) {
+        .wrapper {
+          grid-template-columns: 1fr;
+        }
+      }
+   
     `];
   }
 
-  // Lit render the HTML <h3><span>${this.t.title}:</span> ${this.title}</h3>
   render() {
     return html`
     <div class="wrapper">
@@ -77,9 +93,10 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
   }
 
   updated() {
-    this.querySelectorAll('ddd-card').forEach(card => {
-      card.setAttribute('dataPrimary', this.dataPrimary);
-      card.setAttribute('dataAccent', this.dataAccent);
+    this.style.setProperty('--ddd-theme-accent', `var(--ddd-accent-${this.dataAccent})`);
+    const cards = this.querySelectorAll('ddd-card');
+    cards.forEach(card => {
+      card.dataPrimary = this.dataPrimary;
     });
   }
 

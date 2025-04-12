@@ -1,9 +1,10 @@
 
-import { LitElement, html, css } from "lit";
-import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
+import { html, css } from "lit";
+import { DDDPulseEffectSuper, DDD } from "@haxtheweb/d-d-d/d-d-d.js";
+
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
-export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
+export class DddCard extends DDDPulseEffectSuper(I18NMixin(DDD)) {
    
     static get tag() {
         return "ddd-card";
@@ -11,10 +12,10 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
 
     constructor() {
         super();
+        this.dataPrimary="2";
         this.label="";
         this.link="";
         this.image="";
-        this.dataPrimary="2";
         this.title="";
         this.registerLocalization({
           context: this,
@@ -29,8 +30,7 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
         return {
           ...super.properties,
           title: { type: String },
-          dataPrimary: { type: String },
-          dataAccent: { type: String },
+          dataPrimary: { type: Number,  reflect: true },
           image: { type: String },
           label: { type: String },
           link: { type: String },
@@ -42,27 +42,16 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
         css`
           :host {
             display: inline-block;
-            color: var(--ddd-theme-primary);
-            background-color: var(--ddd-theme-accent);
             font-family: var(--ddd-font-navigation);
           }
           .wrapper {
+            background-color: var(--ddd-theme-default-white);
             border-radius: var(--ddd-radius-sm);
             margin: var(--ddd-spacing-4);
-            background-color: var(--ddd-theme-default-slate);
-            width: 410px;
+            flex: 1 1 300px;
+            max-width: 410px;
+            min-width: 250px;
             box-shadow: var(--ddd-boxShadow-sm);
-            box-shadow: dimgray;
-          }
-          .text {
-            height: 185px;
-          }
-          .title{
-            font-size: var(--ddd-card-list-label-font-size, var(--ddd-font-size-s));
-            margin-top: var(--ddd-spacing-4);
-            margin-bottom: var(--ddd-spacing-0);
-            margin-right: var(--ddd-spacing-4);
-            margin-left: var(--ddd-spacing-4);
           }
           .wrapper img{
             border-top-left-radius: var(--ddd-radius-sm);
@@ -70,47 +59,66 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
             width: 100%;
             height: auto;
             vertical-align: bottom;
+            border-bottom: var( --ddd-theme-primary) 15px solid;
           }
-          .bar{
-            border-top-width: 12px;
-            border-bottom-width: 0px;
-            border-color: var(--theme-ui-colors-nittanyNavy);
-            border-style: solid;
+          .text{
+           height: 185px;
+          }
+          .title{
+            color: var( --ddd-theme-default-nittanyNavy);
+            font-size: var(--ddd-card-list-label-font-size, var(--ddd-font-size-s));
+            margin-top: var(--ddd-spacing-4);
+            margin-bottom: var(--ddd-spacing-0);
+            margin-right: var(--ddd-spacing-4);
+            margin-left: var(--ddd-spacing-4);
           }
           .info{
             color: var(--ddd-theme-default-coalyGray);
-            font-size: 18px;
+            font-size: var(--ddd-font-size-3xs);
             font-family: var(--ddd-font-primary);
-            line-height: 27px;
+            line-height: var(--ddd-lh-150);
             margin-top: var(--ddd-spacing--1);
             margin-left: var(--ddd-spacing-4);
             margin-right: var(--ddd-spacing-4);
-            overflow: auto;
           }
           .btn{
             width: 90%;
             background-color: var(--ddd-theme-default-link);
             color: var(--ddd-theme-default-white);
-            border: none;
+            border: var(--ddd-border-xs);
             padding: var(--ddd-spacing-3);
-            font-size: 16px;
+            font-size: var(--ddd-font-size-4xs);
             font-weight: var(--ddd-font-weight-medium);
             font-family: var(--ddd-font-primary);
-            border-radius: 5px;       
+            border-radius: var(--ddd-radius-sm);       
             margin-bottom: var(--ddd-spacing-5);
             margin-right: var(--ddd-spacing-5);
-            margin-left: var(--ddd-spacing-5);
-
-            
+            margin-left: var(--ddd-spacing-5);            
           }
           .btn:hover{
             color: var(--ddd-theme-default-white);
             background-color: var(--ddd-theme-default-nittanyNavy);
           }
-          .slot{
-            margin: var(--ddd-spacing-0);
+          @media (max-width: 1034px) {
+            .wrapper {
+              width: auto;
+            }
+            .text {
+              flex-grow: 1;
+              margin-bottom: var(--ddd-spacing-5);
+            }
           }
-         
+          @media (max-width: 767px) {
+            .wrapper {
+            width: auto;
+            height: auto;
+            
+          }
+          .text {
+              flex-grow: 1;
+            margin-bottom: var(--ddd-spacing-5);
+            }
+        }
           
         `];
     }
@@ -118,7 +126,6 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
       return html`
         <div class="wrapper">
           <img src="${this.image}" alt="${this.title}"/>
-          <div class="bar" dataAccent="${this.dataAccent}"></div> 
           <div class="text">
             <h3 class="title">${this.title}</h3>
             <div class="info">
@@ -132,16 +139,13 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
         </div> 
         `;
     }
-    
+
     updated(changedProperties) {
       if (changedProperties.has("dataPrimary")) {
         this.style.setProperty("--ddd-theme-primary", `var(--ddd-primary-${this.dataPrimary})`);
       }
-      if (changedProperties.has("dataAccent")) {
-        this.style.setProperty("--ddd-theme-accent", `var(--ddd-accent-${this.dataAccent})`);
-      }
     }
-
+      
     _handleClick() {
       if (this.link) {
         window.open(this.link, "_blank");
@@ -149,12 +153,84 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
     }
     
     static get haxProperties() {
-      return new URL(`./lib/${this.tag}.haxProperties.json`, import.meta.url)
-        .href;
+      return {
+        type: "element",
+        canScale: true,
+  
+        canEditSource: true,
+        gizmo: {
+          title: "Call to action",
+          description: "A simple button with a link to take action.",
+          icon: "image:crop-16-9",
+          color: "orange",
+          tags: ["Layout", "marketing", "button", "link", "url", "design", "cta"],
+          handles: [
+            {
+              type: "link",
+              source: "link",
+              title: "label",
+            },
+          ],
+          meta: {
+            author: "HAXTheWeb core team",
+          },
+        },
+        settings: {
+          configure: [
+            {
+              property: "label",
+              title: "Label",
+              description: "Link label",
+              inputMethod: "textfield",
+              required: true,
+            },
+            {
+              property: "link",
+              title: "Link",
+              description: "Enter a link to any resource",
+              inputMethod: "haxupload",
+              noVoiceRecord: true,
+              noCamera: true,
+              required: true,
+            },
+            {
+              property: "accentColor",
+              title: "Accent Color",
+              description: "An optional accent color.",
+              inputMethod: "colorpicker",
+              icon: "editor:format-color-fill",
+            },
+            {
+              property: "hideIcon",
+              title: "Hide icon",
+              description: "Hide the icon used to accent text",
+              inputMethod: "boolean",
+            },
+          ],
+          advanced: [
+            {
+              property: "icon",
+              title: "Icon",
+              description: "Action link icon",
+              inputMethod: "iconpicker",
+            },
+          ],
+        },
+        saveOptions: {
+          unsetAttributes: ["colors", "element-visible"],
+        },
+        demoSchema: [
+          {
+            tag: "simple-cta",
+            properties: {
+              label: "Click to learn more",
+              link: "https://haxtheweb.org/",
+            },
+            content: "",
+          },
+        ],
+      };
     }
-//bottom: var(--ddd-spacing-0);
-//width: 100%;
-//height: 16px;
-//background-color: var(--ddd-primary-2);
+
 }
 globalThis.customElements.define(DddCard.tag, DddCard);

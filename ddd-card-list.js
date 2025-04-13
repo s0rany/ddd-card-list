@@ -62,7 +62,7 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
         margin: auto;
         margin-bottom:var(--ddd-spacing-6);
         width: 90%;
-        gap: var(--ddd-spacing-6);
+        gap: var(--ddd-spacing-1);
         display: grid;
         flex-direction: row;
         flex-wrap: wrap;

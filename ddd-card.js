@@ -52,7 +52,7 @@ export class DddCard extends DDDPulseEffectSuper(I18NMixin(DDD)) {
             flex-direction: column;
             flex: 1 1 300px;
             justify-content: space-between;
-            height: 100%;
+            height: 600px;
             max-width: 410px;
             box-shadow: var(--ddd-boxShadow-sm);
           }

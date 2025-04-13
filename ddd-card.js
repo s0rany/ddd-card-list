@@ -51,8 +51,9 @@ export class DddCard extends DDDPulseEffectSuper(I18NMixin(DDD)) {
             display: flex;
             flex-direction: column;
             flex: 1 1 300px;
-            justify-content: flex-start;
+            justify-content: space-between;
             height: 100%;
+            max-width: 410px;
             box-shadow: var(--ddd-boxShadow-sm);
           }
           .wrapper img{
@@ -109,10 +110,12 @@ export class DddCard extends DDDPulseEffectSuper(I18NMixin(DDD)) {
           @media (max-width: 1034px) {
             .wrapper {
               width: auto;
+              max-width: 600px;
             }
           }
           @media (max-width: 767.20px) {
             .wrapper {
+              max-width: 600px;
               width: auto;
               height: 100%; 
             }

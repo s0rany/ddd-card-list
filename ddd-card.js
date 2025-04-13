@@ -48,9 +48,11 @@ export class DddCard extends DDDPulseEffectSuper(I18NMixin(DDD)) {
             background-color: var(--ddd-theme-default-white);
             border-radius: var(--ddd-radius-sm);
             margin: var(--ddd-spacing-4);
+            display: flex;
+            flex-direction: column;
             flex: 1 1 300px;
-            max-width: 410px;
-            min-width: 250px;
+            justify-content: flex-start;
+            height: 100%;
             box-shadow: var(--ddd-boxShadow-sm);
           }
           .wrapper img{
@@ -62,13 +64,13 @@ export class DddCard extends DDDPulseEffectSuper(I18NMixin(DDD)) {
             border-bottom: var( --ddd-theme-primary) 15px solid;
           }
           .text{
-           height: 185px;
+            flex-grow: 1;
           }
           .title{
+            vertical-align: top;
             color: var( --ddd-theme-default-nittanyNavy);
             font-size: var(--ddd-card-list-label-font-size, var(--ddd-font-size-s));
             margin-top: var(--ddd-spacing-4);
-            margin-bottom: var(--ddd-spacing-0);
             margin-right: var(--ddd-spacing-4);
             margin-left: var(--ddd-spacing-4);
           }
@@ -77,23 +79,28 @@ export class DddCard extends DDDPulseEffectSuper(I18NMixin(DDD)) {
             font-size: var(--ddd-font-size-3xs);
             font-family: var(--ddd-font-primary);
             line-height: var(--ddd-lh-150);
+
             margin-top: var(--ddd-spacing--1);
             margin-left: var(--ddd-spacing-4);
             margin-right: var(--ddd-spacing-4);
           }
           .btn{
             width: 90%;
+            box-sizing: border-box;
+            vertical-align: bottom;
             background-color: var(--ddd-theme-default-link);
             color: var(--ddd-theme-default-white);
             border: var(--ddd-border-xs);
             padding: var(--ddd-spacing-3);
+
             font-size: var(--ddd-font-size-4xs);
             font-weight: var(--ddd-font-weight-medium);
             font-family: var(--ddd-font-primary);
-            border-radius: var(--ddd-radius-sm);       
-            margin-bottom: var(--ddd-spacing-5);
-            margin-right: var(--ddd-spacing-5);
-            margin-left: var(--ddd-spacing-5);            
+            
+            border-radius: var(--ddd-radius-xs);  
+
+            margin: 0 auto;
+            margin-bottom: var(--ddd-spacing-5); 
           }
           .btn:hover{
             color: var(--ddd-theme-default-white);
@@ -103,23 +110,14 @@ export class DddCard extends DDDPulseEffectSuper(I18NMixin(DDD)) {
             .wrapper {
               width: auto;
             }
-            .text {
-              flex-grow: 1;
-              margin-bottom: var(--ddd-spacing-5);
-            }
           }
-          @media (max-width: 767px) {
+          @media (max-width: 767.20px) {
             .wrapper {
-            width: auto;
-            height: auto;
-            
-          }
-          .text {
-              flex-grow: 1;
-            margin-bottom: var(--ddd-spacing-5);
+              width: auto;
+              height: 100%; 
             }
-        }
-          
+            
+        }   
         `];
     }
     render() {

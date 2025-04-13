@@ -60,13 +60,15 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
       }
       .wrapper {
         margin: auto;
+        margin-bottom:var(--ddd-spacing-6);
         width: 90%;
+        gap: var(--ddd-spacing-6);
         display: grid;
         flex-direction: row;
         flex-wrap: wrap;
         padding: var(--ddd-spacing-4);
         grid-template-columns: repeat(3, 1fr);
-
+        grid-auto-rows: 1fr;
       }
       h3 span {
         font-size: var(--ddd-card-list-label-font-size, var(--ddd-font-size-s));
@@ -76,7 +78,7 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
           grid-template-columns: repeat(2, 1fr);
         }
       }
-      @media (max-width: 767px) {
+      @media (max-width: 767.20px) {
         .wrapper {
           grid-template-columns: 1fr;
         }
